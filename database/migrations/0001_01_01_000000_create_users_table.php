@@ -17,6 +17,8 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->boolean('active')->default(1);
+            $table->integer('role')->default(1);            
             $table->rememberToken();
             $table->timestamps();
         });
@@ -35,6 +37,16 @@ return new class extends Migration
             $table->longText('payload');
             $table->integer('last_activity')->index();
         });
+
+        DB::table('users')->insert(
+            array(
+                'name'  => 'Romeu Grass de Medeiros',
+                'email' => 'romeu.gmedeiros@gmail.com',
+                'active' => 1,
+                'role'  => 100,
+                'password' => '$2y$12$CR2XJE2PvDwaiyzVcsDtr.KdaNpktfN/sK/5JcNCXxqeGC6NwjN9q'
+            )
+        );
     }
 
     /**
